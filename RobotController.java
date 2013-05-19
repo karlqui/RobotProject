@@ -1,4 +1,3 @@
-package robot;
 import java.net.*;
 import java.io.*;
 import robot.*;
@@ -6,7 +5,7 @@ import robot.*;
 public class RobotController extends Thread
 {
    private ServerSocket serverSocket;
-   
+   private Process p;
    private final MotorController motorController = new MotorController(); //create controller to controll the robot's motor
    
    public RobotController(int port) throws IOException
@@ -14,7 +13,7 @@ public class RobotController extends Thread
 		serverSocket = new ServerSocket(port);
 		serverSocket.setSoTimeout(600000); //wait 10 min
 		try{
-			Runtime.getRuntime().exec("./start_viktor.sh");
+			p = Runtime.getRuntime().exec("./start_viktor.sh");
 			System.out.println("Mjpeg-Streamer started");
 		}
 		catch(Exception e){
@@ -67,6 +66,11 @@ public class RobotController extends Thread
 					
 			}while(!inS.equals("Exit")); //client decided to terminate the connection
 			server.close();
+			in.close();
+			out.close();
+			p.destroy();
+			Runtime.getRuntime().exec("pkill mjpg_streamer"); //manually close mjpg streamer
+			System.out.println("Connection terminated");
 			System.exit(0);
          }catch(SocketTimeoutException s)
          {
