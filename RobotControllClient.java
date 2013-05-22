@@ -26,8 +26,8 @@ public class RobotControllClient
 		url = new URL("http://karlqui.no-ip.biz:8080/?action=stream");
 		runner = new MjpegRunner(url);
 		createGUI();
-		
-		runner.run();		
+		runner.run();	
+		  	
 	}
 	
 	private static JButton b1,b2,b3,b4,b5, b6;
@@ -46,23 +46,31 @@ public class RobotControllClient
 		tf2 = new JTextField("0", 10);
 		frame.setVisible(true);
 		frame.add(p2);
-		frame.setLayout(new GridLayout());
+		frame.setLayout(new GridLayout(1,1));
+		GridLayout layout = new GridLayout(5,2);
+		layout.setHgap(100);
+		layout.setVgap(100);
 		p2.setVisible(true);
+		p1.setLayout(layout);
 		frame.setSize(1000,700);
 		b1 = new JButton("Forward");
 		b2 = new JButton("Backward");
 		b3 = new JButton("Left");
 		b4 = new JButton("Right");
 		b5 = new JButton("Exit");
+		b1.setSize(10,10);
 		b6 = new JButton("Connect");
+		
 		p1.add(b1);
 		p1.add(b2);
 		p1.add(b3);
 		p1.add(b4);
 		p1.add(b5);
+		p1.add(l2);
+		
 		p2.add(b6);
 		p2.add(l1);
-		p1.add(l2);
+		
 		p2.add(tf1);
 		p2.add(tf2);
 		tf1.getDocument().addDocumentListener(textListener);

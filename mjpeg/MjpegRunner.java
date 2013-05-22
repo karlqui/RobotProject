@@ -61,7 +61,7 @@ public class MjpegRunner  extends JPanel implements Runnable
 		l1 = new JLabel("FPS: ");
 		this.setSize(320,240);
 		this.add(l1);
-		this.setLayout(new GridLayout());
+		this.setLayout(new GridLayout(1,1));
 	}
 
 	/**

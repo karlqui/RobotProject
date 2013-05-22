@@ -7,6 +7,7 @@ public class RobotController extends Thread
    private ServerSocket serverSocket;
    private Process p;
    private final MotorController motorController = new MotorController(); //create controller to controll the robot's motor
+   private final ServoController servoController = new ServoController();
    
    public RobotController(int port) throws IOException
    {
@@ -56,6 +57,10 @@ public class RobotController extends Thread
 								out.writeObject("Turning Right");
 								motorController.motorRight(message[1]);
 							}
+							else if(message[0].equals("Servo")){
+								out.writeObject("Turning Servo");
+								servoController.pulse(message[1]);
+							}
 						}
 						out.flush(); // flush buffer
 						
@@ -67,6 +72,7 @@ public class RobotController extends Thread
 			}while(!inS.equals("Exit")); //client decided to terminate the connection
 			server.close();
 			in.close();
+			motorController.motorStop();
 			out.close();
 			p.destroy();
 			Runtime.getRuntime().exec("pkill mjpg_streamer"); //manually close mjpg streamer
