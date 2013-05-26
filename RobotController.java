@@ -59,7 +59,7 @@ public class RobotController extends Thread
 							}
 							else if(message[0].equals("Servo")){
 								out.writeObject("Turning Servo");
-								servoController.pulse(message[1]);
+								servoController.turnServo(message[1]);
 							}
 						}
 						out.flush(); // flush buffer

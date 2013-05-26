@@ -30,7 +30,7 @@ public class RobotControllClient
 		  	
 	}
 	
-	private static JButton b1,b2,b3,b4,b5, b6;
+	private static JButton b1,b2,b3,b4,b5, b6, b7, b8;
 	private static JPanel p1,p2;
 	private static JLabel l1,l2;
 	private static JTextField tf1, tf2;
@@ -58,6 +58,8 @@ public class RobotControllClient
 		b3 = new JButton("Left");
 		b4 = new JButton("Right");
 		b5 = new JButton("Exit");
+		b7 = new JButton("Servo left");
+		b8 = new JButton("Servo right");
 		b1.setSize(10,10);
 		b6 = new JButton("Connect");
 		
@@ -66,6 +68,8 @@ public class RobotControllClient
 		p1.add(b3);
 		p1.add(b4);
 		p1.add(b5);
+		p1.add(b7);
+		p1.add(b8);
 		p1.add(l2);
 		
 		p2.add(b6);
@@ -81,6 +85,8 @@ public class RobotControllClient
 		b4.addActionListener(buttonListener);
 		b5.addActionListener(buttonListener);
 		b6.addActionListener(buttonListener);
+		b7.addActionListener(buttonListener);
+		b8.addActionListener(buttonListener);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    
    }
@@ -118,6 +124,19 @@ public class RobotControllClient
 				dataOut.flush();
 				client.close();
 				System.exit(0);
+			}
+			else if(e.getActionCommand().equals("Servo left")){
+				System.out.println("Servo turning left");
+				dataOut.writeObject("Servo left");
+				dataOut.flush();
+				System.out.println("Server says " + (String)dataIn.readObject());
+				
+			}
+			else if(e.getActionCommand().equals("Servo right")){
+				System.out.println("Servo turn right");
+				dataOut.writeObject("Servo right");
+				dataOut.flush();
+				System.out.println("Server says " + (String)dataIn.readObject());
 			}
 			else if(e.getActionCommand().equals("Connect")){
 				try{
