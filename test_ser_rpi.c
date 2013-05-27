@@ -1,39 +1,4 @@
-/* passw690u.c Check multiple passwords for PK2 UartTool */
 
-/*  PICKIT 2 UART-Tool
-Cable          Chip Programmer    UART Tool
-Kjell & Co     
-37-342         
-
-> 1 = Blue   > 1 = VPP          > 1
-  2 = Green    2 = VDD Target     2 = VDD Target
-  3 = Yellow   3 = VSS (Ground)   3 = VSS (Ground)
-  4 = Orange   4 = ICSPDAT        4 = RX (PICKit2 In)
-  5 = Red      5 = ICSPCLK        5 = TX (PICKit2 Out)
-  6 = Brown    6 = AUX            6
-*/
-
-/*
-   Use "PICkit2 UART Tool" as a 9600 Baud terminal.
-   Uncheck "Echo On".
-   PIC internal USART is used.
-   Connect jumpers RB7-PGD and RB5-PGC.                       J1
-		   ___________  ___________                          1 RA5
-		  |           \/           |                         2 RA4
-	+5V---|Vdd      16F690      Vss|---GND                   3 RA3
-		  |RA5        RA0/AN0/(PGD)|>RB7 ->- PK2Rx (Orange)  4 RC5
-		  |RA4            RA1/(PGC)|>RB5 -<- PK2Tx (Red)     5 RC4
-		  |RA3/!MCLR/(Vpp)  RA2/INT|                         6 RC3
-		  |RC5/CCP              RC0|                         7 RA0 PK2Rx
-		  |RC4                  RC1|                         8 RA1 PK2Tx
-		  |RC3                  RC2|                         9 RA2
-		  |RC6                  RB4|                        10 RC0
-		  |RC7               RB5/Rx|>PGC                    11 RC1
-	  PGD<|RB7/Tx               RB6|                        12 RC2
-		  |________________________|                        13 +5V
-															14 GND
-*/
-/* B Knudsen Cc5x C-compiler - not ANSI-C */
 #include "16F690.h"
 #include "int16Cxx.h"
 #pragma config |= 0x00D4
