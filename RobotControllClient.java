@@ -30,7 +30,7 @@ public class RobotControllClient
 		  	
 	}
 	
-	private static JButton b1,b2,b3,b4,b5, b6, b7, b8;
+	private static JButton b1,b2,b3,b4,b5, b6, b7, b8, b9;
 	private static JPanel p1,p2;
 	private static JLabel l1,l2;
 	private static JTextField tf1, tf2;
@@ -42,8 +42,8 @@ public class RobotControllClient
 		p2 = new JPanel();
 		l1 = new JLabel("");
 		l2 = new JLabel("");
-		tf1 = new JTextField("Ange ip-adress", 20);
-		tf2 = new JTextField("0", 10);
+		tf1 = new JTextField("karlqui.no-ip.biz", 20);
+		tf2 = new JTextField("1337", 10);
 		frame.setVisible(true);
 		frame.add(p2);
 		frame.setLayout(new GridLayout(1,1));
@@ -60,6 +60,7 @@ public class RobotControllClient
 		b5 = new JButton("Exit");
 		b7 = new JButton("Servo left");
 		b8 = new JButton("Servo right");
+		b9 = new JButton("Stop");
 		b1.setSize(10,10);
 		b6 = new JButton("Connect");
 		
@@ -67,6 +68,7 @@ public class RobotControllClient
 		p1.add(b2);
 		p1.add(b3);
 		p1.add(b4);
+		p1.add(b9);
 		p1.add(b5);
 		p1.add(b7);
 		p1.add(b8);
@@ -87,6 +89,7 @@ public class RobotControllClient
 		b6.addActionListener(buttonListener);
 		b7.addActionListener(buttonListener);
 		b8.addActionListener(buttonListener);
+		b9.addActionListener(buttonListener);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
    
    }
@@ -118,6 +121,13 @@ public class RobotControllClient
 				dataOut.flush();
 				System.out.println("Server says " + (String)dataIn.readObject());
 			}
+			else if(e.getActionCommand().equals("Stop")){
+				System.out.println("Sending message");
+				dataOut.writeObject("Stop");
+				dataOut.flush();
+				System.out.println("Server says " + (String)dataIn.readObject());
+			}
+			
 			else if(e.getActionCommand().equals("Exit")){
 				System.out.println("Shutting down");
 				dataOut.writeObject("Exit");

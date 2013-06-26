@@ -29,37 +29,38 @@ public class MotorController {
 	}
 	
 	public void motorForward(String speed){
-		//motor1pin1.pulse(getSpeed(speed));
-		motor1pin1.high();
-		motor2pin1.high();
+		motor1pin1.pulse(500);
+		motor2pin1.pulse(500);
+		//motor1pin1.high();
+		//motor2pin1.high();
 		motor1pin2.low();
-		//motor2pin1.pulse(getSpeed(speed));
+		
 	
 		motor2pin2.low();
 	}
 	public void motorLeft(String speed){
-		//motor1pin1.pulse(getSpeed(speed));
-		motor1pin1.high();
+		motor1pin1.pulse(500);
+		//motor1pin1.high();
 		motor1pin2.low();
 		motor2pin1.low();
-		//motor2pin2.pulse(getSpeed(speed));
-		motor2pin2.high();
+		motor2pin2.pulse(500);
+		//motor2pin2.high();
 	}
 	public void motorRight(String speed){
 		motor1pin1.low();
-		//motor1pin2.pulse(getSpeed(speed));
-		motor1pin2.high();
-		//motor2pin1.pulse(getSpeed(speed));
-		motor2pin1.high();
+		motor1pin2.pulse(500);
+		//motor1pin2.high();
+		motor2pin1.pulse(500);
+		//motor2pin1.high();
 		motor2pin2.low();
 	}
 	public void motorBackward(String speed){
 		motor1pin1.low();
-		//motor1pin2.pulse(getSpeed(speed));
-		motor1pin2.high();
+		motor1pin2.pulse(500);
+		//motor1pin2.high();
 		motor2pin1.low();
-		//motor2pin2.pulse(getSpeed(speed));
-		motor2pin2.high();
+		motor2pin2.pulse(500);
+		//motor2pin2.high();
 	}
 	public void motorStop(){
 		motor1pin1.low();
